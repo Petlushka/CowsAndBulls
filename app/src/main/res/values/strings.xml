@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CowsAndBulls</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="statistics">Statistics</string>
+    <string name="game">Game</string>
+    <string name="players">Players</string>
+</resources>

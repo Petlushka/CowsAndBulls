@@ -4,6 +4,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "players")
-public class Player (
-        @PrimaryKey(autoGenerate = true) val id: Int,
-        var username: String)
+data class Player (var userName: String) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

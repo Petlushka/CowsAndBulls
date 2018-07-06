@@ -7,14 +7,17 @@ import android.arch.persistence.room.Query
 import com.example.user.cowsandbulls.model.entities.Player
 
 @Dao
-public interface PlayerDao {
+interface PlayerDao {
 
     @Insert
     fun insertPlayer(player: Player)
 
     @Query("SELECT * FROM players")
-    fun loadAlPlayers(): List<Player>
+    fun loadAlPlayers(): MutableList<Player>
 
     @Delete
     fun deletePlayer(player: Player)
+
+    @Query("SELECT * FROM players WHERE id = :playerId")
+    fun getPLayer(playerId: Int): Player
 }

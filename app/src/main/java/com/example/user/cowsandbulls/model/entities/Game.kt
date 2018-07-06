@@ -11,7 +11,9 @@ import android.arch.persistence.room.PrimaryKey
                 childColumns = arrayOf("userId"),
                 onDelete = ForeignKey.CASCADE))],
         indices = [Index("userId")])
-public class Game (@PrimaryKey(autoGenerate = true)val id: Int,
-                   val goal: String,
-                   val userId: Int,
-                   val startDate: Long)
+data class Game (val goal: String,
+                 val userId: Int,
+                 val startDate: Long) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

@@ -9,7 +9,7 @@ import com.example.user.cowsandbulls.model.entities.Game
 import com.example.user.cowsandbulls.model.entities.Player
 import com.example.user.cowsandbulls.model.entities.Step
 
-@Database(entities = arrayOf(Player::class, Game::class, Step::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Player::class, Game::class, Step::class), version = 2, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun gameDao(): GameDao

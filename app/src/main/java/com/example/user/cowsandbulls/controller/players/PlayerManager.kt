@@ -1,6 +1,7 @@
 package com.example.user.cowsandbulls.controller.players
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.user.cowsandbulls.model.AppDatabase
 import com.example.user.cowsandbulls.model.entities.Player
 import javax.inject.Inject
@@ -17,6 +18,7 @@ class PlayerManager @Inject constructor(private val database: AppDatabase, priva
 
 
     fun saveCurrentUsed(userId: Int) {
+        Log.d("MyLogs", "save user id - $userId")
         sPref.edit().putInt(CURRENT_PLAYER_KEY, userId).apply()
     }
 
@@ -31,7 +33,7 @@ class PlayerManager @Inject constructor(private val database: AppDatabase, priva
 
 
     fun addNewPlayer(): Player {
-        val player = Player("Player Player ${playerCount++}")
+        val player = Player(userName = "Player Player ${playerCount++}")
         database.playerDao().insertPlayer(player)
         return player
     }

@@ -9,5 +9,5 @@ interface OnDeletePlayerListener {
 
 interface onSelectPlayerListener {
 
-   operator fun invoke(player: Player)
+   operator fun invoke(playerId: Int)
 }

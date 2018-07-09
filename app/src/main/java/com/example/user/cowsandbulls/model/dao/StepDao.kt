@@ -6,7 +6,7 @@ import android.arch.persistence.room.Query
 import com.example.user.cowsandbulls.model.entities.Step
 
 @Dao
-public interface StepDao {
+interface StepDao {
 
     @Insert
     fun addStep(step: Step)

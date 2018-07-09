@@ -9,11 +9,16 @@ import com.example.user.cowsandbulls.model.AppDatabase
 
 class MyApp: Application() {
 
-    public lateinit var appComponent: AppComponent
+    lateinit var appComponent: AppComponent
     lateinit var appDatabase: AppDatabase
 
+    companion object {
+        lateinit var instance: MyApp
+        private set
+    }
     override fun onCreate() {
         super.onCreate()
+        instance = this
         appComponent = initDagger(this)
         appDatabase = Room.databaseBuilder(this, AppDatabase::class.java, "appDb").build()
     }

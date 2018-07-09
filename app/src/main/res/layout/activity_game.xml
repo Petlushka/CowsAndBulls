@@ -4,7 +4,7 @@
     android:padding="16dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <Button
-        android:id="@+id/start_game_btn"
+        android:id="@+id/startGameBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_game"/>
@@ -12,22 +12,24 @@
         android:id="@+id/steps_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/start_game_btn"/>
+        android:layout_below="@id/startGameBtn"/>
     <LinearLayout
+        android:id="@+id/answerValueContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:weightSum="5"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/answer_value"
+            android:id="@+id/answerValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="5"
             android:maxLength="4"/>
         <Button
-            android:id="@+id/ok_btn"
+            android:id="@+id/okBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

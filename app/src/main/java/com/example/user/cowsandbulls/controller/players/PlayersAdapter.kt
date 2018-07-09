@@ -4,10 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.user.cowsandbulls.R
+import com.example.user.cowsandbulls.R.id.playerName
 import com.example.user.cowsandbulls.model.entities.Player
+import kotlinx.android.synthetic.main.player_item.view.*
 
 class PlayersAdapter(var players:MutableList<Player>,
                      val onDeletePlayerListener: OnDeletePlayerListener,
@@ -20,9 +20,9 @@ class PlayersAdapter(var players:MutableList<Player>,
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-        holder.playerName.text = players[position].userName
-        holder.playerName.setOnClickListener { onSelectPlayerListener(players[position]) }
-        holder.deleteBtn.setOnClickListener{
+        holder.bindPlayer(players[position])
+        holder.itemView.playerName.setOnClickListener { onSelectPlayerListener(players[position].id) }
+        holder.itemView.deletePlayer.setOnClickListener{
             onDeletePlayerListener(position)
         }
     }
@@ -38,10 +38,11 @@ class PlayersAdapter(var players:MutableList<Player>,
 
     class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val playerName: TextView = itemView.findViewById(R.id.player_name)
-        val deleteBtn: ImageView = itemView.findViewById(R.id.delete_player)
 
-
+        fun bindPlayer(player: Player) {
+            itemView.playerName.text = player.userName
+           // itemView.deletePlayer.setOnClickListener(onDeletePlayer)
+        }
 
 
 

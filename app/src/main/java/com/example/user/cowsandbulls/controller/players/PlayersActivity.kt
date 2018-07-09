@@ -4,18 +4,16 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.Button
+import android.util.Log
 import com.example.user.cowsandbulls.MyApp
 import com.example.user.cowsandbulls.R
 import com.example.user.cowsandbulls.controller.game.GameActivity
 import com.example.user.cowsandbulls.model.entities.Player
+import kotlinx.android.synthetic.main.fragment_players.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.find
 import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
-const val PLAYER_ID_KEY = "PLAYER_ID_KEY"
 
 class PlayersActivity : AppCompatActivity() {
 
@@ -45,30 +43,28 @@ class PlayersActivity : AppCompatActivity() {
             }
         },
                 object : onSelectPlayerListener {
-                    override fun invoke(player: Player) {
-                        manager.saveCurrentUsed(player.id)
-                        startNewGame(player.id)
+                    override fun invoke(playerId: Int) {
+                        manager.saveCurrentUsed(playerId)
+                        startNewGame()
                     }
                 })
-        val recyclerView = find<RecyclerView>(R.id.players_list)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        playersList.adapter = adapter
+        playersList.layoutManager = LinearLayoutManager(this)
 
-        val addBtn = find<Button>(R.id.btn_add)
         addBtn.setOnClickListener { addPlayer() }
 
         getData()
     }
 
-    private fun startNewGame(playerId: Int) {
+    private fun startNewGame() {
         val intent = Intent(this, GameActivity::class.java)
-        intent.putExtra(PLAYER_ID_KEY, playerId)
         startActivity(intent)
     }
 
     private fun getData() {
         doAsync {
             players = manager.getAllPlayers()
+            Log.d("MyLogs", "players - $players")
             uiThread { adapter.setData(players) }
         }
     }
